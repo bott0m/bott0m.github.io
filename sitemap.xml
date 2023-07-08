@@ -3,18 +3,24 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://bott0n.github.io/</loc>
-    <lastmod>2022-11-19T17:44:45+08:00</lastmod>
+    <lastmod>2023-07-08T16:04:50+08:00</lastmod>
+  </url><url>
+    <loc>https://bott0n.github.io/tags/hackthebox/</loc>
+    <lastmod>2023-07-08T16:04:50+08:00</lastmod>
+  </url><url>
+    <loc>https://bott0n.github.io/posts/hackthebox-writeup-pilgrimage/</loc>
+    <lastmod>2023-07-08T16:04:50+08:00</lastmod>
+  </url><url>
+    <loc>https://bott0n.github.io/posts/</loc>
+    <lastmod>2023-07-08T16:04:50+08:00</lastmod>
+  </url><url>
+    <loc>https://bott0n.github.io/tags/</loc>
+    <lastmod>2023-07-08T16:04:50+08:00</lastmod>
   </url><url>
     <loc>https://bott0n.github.io/tags/ctf/</loc>
     <lastmod>2022-11-19T17:44:45+08:00</lastmod>
   </url><url>
     <loc>https://bott0n.github.io/posts/hkcertctf-2022-writeups/</loc>
-    <lastmod>2022-11-19T17:44:45+08:00</lastmod>
-  </url><url>
-    <loc>https://bott0n.github.io/posts/</loc>
-    <lastmod>2022-11-19T17:44:45+08:00</lastmod>
-  </url><url>
-    <loc>https://bott0n.github.io/tags/</loc>
     <lastmod>2022-11-19T17:44:45+08:00</lastmod>
   </url><url>
     <loc>https://bott0n.github.io/posts/hkcertctf-2021-writeups/</loc>
