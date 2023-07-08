@@ -221,11 +221,23 @@
 <p>We found .git directory from nmap</p>
 <p><img src="https://i.imgur.com/zDIJgzy.png" alt=""></p>
 <p>We can use git-dumper to dump the git repo</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./git_dumper.py http://pilgrimage.htb/.git git
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">./git_dumper.py http://pilgrimage.htb/.git dump
 </code></pre></div><p>We found a binary file magick, google it we found a poc
 <a href="https://github.com/duc-nt/CVE-2022-44268-ImageMagick-Arbitrary-File-Read-PoC">https://github.com/duc-nt/CVE-2022-44268-ImageMagick-Arbitrary-File-Read-PoC</a></p>
-<p><img src="https://i.imgur.com/Zn4ejHV.png" alt="Imgur"></p>
-<p>We now can read any file we want, from the source code, we found &ldquo;sqlite:/var/db/pilgrimage&rdquo;</p>
+<pre tabindex="0"><code>total 26972
+drwxr-xr-x 5 kali kali     4096 Jul  8 02:30 .
+drwxr-xr-x 4 kali kali     4096 Jul  8 04:44 ..
+drwxr-xr-x 6 kali kali     4096 Jul  8 02:30 assets
+-rwxr-xr-x 1 kali kali     5538 Jul  8 02:30 dashboard.php
+drwxr-xr-x 7 kali kali     4096 Jul  8 02:30 .git
+-rwxr-xr-x 1 kali kali     9250 Jul  8 02:30 index.php
+-rwxr-xr-x 1 kali kali     6822 Jul  8 02:30 login.php
+-rwxr-xr-x 1 kali kali       98 Jul  8 02:30 logout.php
+-rwxr-xr-x 1 kali kali 27555008 Jul  8 02:30 magick
+-rwxr-xr-x 1 kali kali     6836 Jul  8 02:30 register.php
+drwxr-xr-x 4 kali kali     4096 Jul  8 02:30 vendor
+
+</code></pre><p>We now can read any file we want, from the source code, we found &ldquo;sqlite:/var/db/pilgrimage&rdquo;</p>
 <p><img src="https://i.imgur.com/k15YNzy.png" alt="Imgur">
 Read that file, we can find the password of emily</p>
 <p><code>emily : abigchonkyboi123</code></p>
