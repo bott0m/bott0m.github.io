@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Some copyright notice - [my license](https://example.com/license)</copyright>
-    <lastBuildDate>Mon, 31 Jul 2023 18:26:56 +0800</lastBuildDate><atom:link href="https://bott0n.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 20 Aug 2023 17:37:11 +0800</lastBuildDate><atom:link href="https://bott0n.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>BauhiniaCTF 2023 Author Writeups</title>
+      <link>https://bott0n.github.io/posts/bauhiniactf2023-author-writeups/</link>
+      <pubDate>Sun, 20 Aug 2023 17:37:11 +0800</pubDate>
+      
+      <guid>https://bott0n.github.io/posts/bauhiniactf2023-author-writeups/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>My Experience on OSCP</title>
       <link>https://bott0n.github.io/posts/my-experience-on-oscp/</link>
