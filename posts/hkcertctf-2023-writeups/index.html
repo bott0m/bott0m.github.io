@@ -220,7 +220,7 @@
         <li><a href="#isa-atom-400-points-33-solves">ISA Atom (400 points, 33 solves)</a>
           <ul>
             <li><a href="#simulatorc">Simulator.c</a></li>
-            <li><a href="#translated-asm">Translated ASM</a></li>
+            <li><a href="#translated-x86-asm">Translated x86 ASM</a></li>
           </ul>
         </li>
       </ul>
@@ -259,8 +259,8 @@
 We are required to obtain 95% or above similarity and reverse the soruce code to get internal flag.</p>
 <p>If we put the binary in ida and ghidra, we can follow to disassembly result to get most of the source code.
 However, there are two tricky parts for me to recover.</p>
-<p>The First one is the variables declare sequence, here are the result from ghidra and ida:
-<em>Ghidra</em></p>
+<p>The First one is the variables declare sequence, here are the result from ghidra and ida:</p>
+<p><em>Ghidra</em></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">  <span style="color:#66d9ef">int</span> iVar1;
   <span style="color:#66d9ef">int</span> iVar2;
   <span style="color:#66d9ef">int</span> iVar3;
@@ -494,7 +494,7 @@ We retrieved the flag after waiting for a few minutes.</p>
     
     ((void_fn) shellcode)();
 }
-</code></pre></div><h3 id="translated-asm">Translated ASM</h3>
+</code></pre></div><h3 id="translated-x86-asm">Translated x86 ASM</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-asm" data-lang="asm"><span style="color:#a6e22e">JMP</span> <span style="color:#ae81ff">0x0000b3</span>
 <span style="color:#a6e22e">PUSH</span> <span style="color:#66d9ef">ebp</span>
 <span style="color:#a6e22e">MOV</span> <span style="color:#66d9ef">ebp</span>, <span style="color:#66d9ef">esp</span>
